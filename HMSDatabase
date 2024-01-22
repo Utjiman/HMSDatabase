@@ -1,0 +1,96 @@
+using System.Data;
+using MySql.Data.MySqlClient;
+using Dapper;
+
+static class DogDatabase
+{
+
+        static string connectionString = "server=localhost;database=dogexhibition;uid=root;pwd=;";
+        static IDbConnection connection = new MySqlConnection(connectionString);
+
+        /// <summary>
+        /// Hämta alla hundar
+        /// </summary>
+        /// <returns>En dynamic som innehåller egenskaperna id, name, race, owner.</returns>
+        public static List<dynamic> GetAllDogs()
+        {
+            // Själva sql-stringen, en helt vanlig C#-string!
+            string sql = "SELECT dogs.id, dogs.name, race.name as race, owners.name as owner " +
+            "FROM dogs " +
+            "LEFT JOIN race ON dogs.raceId=race.id " +
+            "INNER JOIN owners ON dogs.ownerId=owners.id ORDER BY dogs.name";
+
+            // Anropa dappermetoden Query, som returnerar en IENumerable.
+            // Konvertera IENumerable<T>-objektet till ett List<T>-objekt med metoden ToList()
+            var alldogs = connection.Query<dynamic>(sql).ToList();
+            
+            // Returnera listan
+            return alldogs;
+        }
+
+        /// <summary>
+        /// Hämta alla användare
+        /// </summary>
+        /// <returns>En dynamic som innehåller egenskaperna id, name, address.</returns>
+        public static List<dynamic> GetAllOwners()
+        {
+            string sql = "SELECT id, name, address " +
+            "FROM owners ";
+            return connection.Query<dynamic>(sql).ToList();
+        }
+        /// <summary>
+        /// Hämta en specifik användare utifrån ett id
+        /// </summary>
+        /// <returns>En dynamic som innehåller egenskaperna id, name, address.</returns>
+        public static List<dynamic> GetOwner(int ownerId)
+        {
+            string sql = $"SELECT id, name, address FROM owners WHERE id={ownerId}";
+            return connection.QuerySingle<dynamic>(sql).ToList();
+        }
+
+        /// <summary>
+        /// Hämta en specifik användare utifrån ett id
+        /// </summary>
+        /// <returns>En dynamic som innehåller egenskaperna id, name, address.</returns>
+        public static List<dynamic> GetAllDogsForOwner(int ownerId)
+        {
+            string sql = "SELECT dogs.id, dogs.name, race.name as race " +
+            "FROM dogs " +
+            $"LEFT JOIN race ON dogs.raceId=race.id WHERE ownerId={ownerId}";
+            return connection.Query<dynamic>(sql).ToList();
+        }
+        /// <summary>
+        /// Hämta alla raser
+        /// </summary>
+        /// <returns>En dynamic som innehåller egenskaperna id, name.</returns>
+        public static List<dynamic> GetAllRaces()
+        {
+            string sql = "SELECT id, name FROM race";
+            return connection.Query<dynamic>(sql).ToList();
+        }
+
+        /// <summary>
+        /// Lägg till en hund
+        /// </summary>
+        /// <param name="dogname">Hundens namn.</param>
+        /// <param name="ownerId">Ägarens id.</param>
+        /// <param name="raceId">Rasens id.</param>
+        public static void AddDog(string dogname, int ownerId, int raceId)
+        {
+            string sql=$"INSERT INTO dogs(name, ownerId, raceID) VALUES(\"{dogname}\", {ownerId}, {raceId});";
+            connection.Execute(sql);
+        }
+
+        /// <summary>
+        /// Uppdatera en hund
+        /// </summary>
+        /// <param name="dogId">id på hunden som ska uppdateras.</param>
+        /// <param name="dogname">Hundens namn.</param>
+        /// <param name="ownerId">Ägarens id.</param>
+        public static void UpdateDog(int dogId, string dogname, int ownerId)
+        {
+            string sql=$"UPDATE dogs SET name=\"{dogname}\", ownerId = {ownerId} WHERE id="+dogId;
+            System.Console.WriteLine(sql);
+            connection.Execute(sql);
+        }
+}
