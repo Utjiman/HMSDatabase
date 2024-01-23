@@ -39,3 +39,4 @@ C:\Users\utjis\OneDrive - Handelsakademin\SQL\HMS\obj\Debug\net8.0\refint\hms.dl
 C:\Users\utjis\OneDrive - Handelsakademin\SQL\HMS\obj\Debug\net8.0\hms.pdb
 C:\Users\utjis\OneDrive - Handelsakademin\SQL\HMS\obj\Debug\net8.0\hms.genruntimeconfig.cache
 C:\Users\utjis\OneDrive - Handelsakademin\SQL\HMS\obj\Debug\net8.0\ref\hms.dll
+C:\Users\utjis\OneDrive - Handelsakademin\SQL\HMS\obj\Debug\net8.0\hms.sourcelink.json
