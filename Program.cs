@@ -31,7 +31,7 @@ namespace HMSApplication
                             PrintAllGuests();
                             break;
                         case 2:
-                            
+                            ShowAvailableRooms();
                             break;
                         case 3:
                             
@@ -53,8 +53,9 @@ namespace HMSApplication
         }
         static void PrintAllGuests()
         {
-            System.Console.WriteLine("===================");
-            System.Console.WriteLine("Print Guest");
+            System.Console.WriteLine("-----------");
+            System.Console.WriteLine("Show Guest");
+            System.Console.WriteLine("-----------");
             
             List<dynamic> Guests = HMSDatabase.HMSDatabase.GetAllGuest();
 
@@ -62,8 +63,25 @@ namespace HMSApplication
             foreach (dynamic d in Guests)
             {
                 
-                Console.WriteLine("Namn: " + d.Name + ", Nationalitet: " + d.Nationality + " Adress: " + d.Adress  + ", DateOfBirth: " + d.DateOfBirth + "Phone NR: " + d.PhoneNr);
+                Console.WriteLine($"Namn: {d.Name} | Nationalitet: {d.Nationality} | Adress: {d.Adress} | DateOfBirth: {d.DateOfBirth} | Phone NR: {d.PhoneNr} ");
+                System.Console.WriteLine("");
             }
+            System.Console.WriteLine("");
+        }
+        static void ShowAvailableRooms()
+        {
+            System.Console.WriteLine("---------------------");
+            System.Console.WriteLine("Show available rooms");
+            System.Console.WriteLine("---------------------");
+            System.Console.WriteLine();
+            List<dynamic> availableRooms = HMSDatabase.HMSDatabase.GetAvailableRooms();
+            foreach (var room in availableRooms)
+            {
+                Console.WriteLine($"Rumnummer: {room.RoomNr} | Status: {room.RoomStatus} | ViewType: {room.ViewType} | Last Cleaning Date: {room.LastCleaningDate} ");
+                
+            }
+            System.Console.WriteLine("");
+
         }
 
     }

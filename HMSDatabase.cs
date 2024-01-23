@@ -19,6 +19,19 @@ namespace HMSDatabase
             }
         }
 
+        public static List<dynamic> GetAvailableRooms()
+        {
+            using (IDbConnection db = new MySqlConnection(connectionString))
+            {
+                string sql = "SELECT * FROM Room WHERE RoomStatus = 'Available'"; 
+                var availableRooms = db.Query<dynamic>(sql).ToList();
+                return availableRooms;
+            }
+        }
+
+
+
+
        
     }
 }
