@@ -23,14 +23,17 @@ namespace HMSApplication
                     System.Console.WriteLine("| [5] Avlsuta programmet       |");
                     System.Console.WriteLine("--------------------------------");
                     System.Console.Write("Val: ");
+                    
                     int menu = int.Parse(Console.ReadLine());
 
                     switch (menu)
                     {
                         case 1:
+                            System.Console.WriteLine("");
                             PrintAllGuests();
                             break;
                         case 2:
+                            System.Console.WriteLine("");
                             ShowAvailableRooms();
                             break;
                         case 3:
@@ -64,7 +67,7 @@ namespace HMSApplication
             {
                 
                 Console.WriteLine($"Namn: {d.Name} | Nationalitet: {d.Nationality} | Adress: {d.Adress} | DateOfBirth: {d.DateOfBirth} | Phone NR: {d.PhoneNr} ");
-                System.Console.WriteLine("");
+                
             }
             System.Console.WriteLine("");
         }
@@ -73,7 +76,7 @@ namespace HMSApplication
             System.Console.WriteLine("---------------------");
             System.Console.WriteLine("Show available rooms");
             System.Console.WriteLine("---------------------");
-            System.Console.WriteLine();
+            
             List<dynamic> availableRooms = HMSDatabase.HMSDatabase.GetAvailableRooms();
             foreach (var room in availableRooms)
             {
