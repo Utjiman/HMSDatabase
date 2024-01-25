@@ -3,6 +3,7 @@ using HMSDatabase;
 using System.Data;
 using MySql.Data.MySqlClient;
 using Dapper;
+using Mysqlx.Crud;
 
 
 
@@ -18,7 +19,7 @@ namespace HMSApplication
                     System.Console.WriteLine("--------------------------------");
                     System.Console.WriteLine("| [1] Show Guests              |");
                     System.Console.WriteLine("| [2] Show available rooms     |");
-                    System.Console.WriteLine("| [3] Add something            |");
+                    System.Console.WriteLine("| [3] Add Guest                |");
                     System.Console.WriteLine("| [4] Remove something         |");
                     System.Console.WriteLine("| [5] Avlsuta programmet       |");
                     System.Console.WriteLine("--------------------------------");
@@ -37,7 +38,8 @@ namespace HMSApplication
                             ShowAvailableRooms();
                             break;
                         case 3:
-                            
+                            System.Console.WriteLine("");
+                            AddGuest();
                             break;
                         case 4:
                             
@@ -85,6 +87,19 @@ namespace HMSApplication
             }
             System.Console.WriteLine("");
 
+        }
+
+        static void AddGuest()
+        {
+            Console.WriteLine("Add Guest");
+            Console.Write("Insert name of the guest: ");
+            string guestName = Console.ReadLine();
+            Console.Write("Insert Adress of the guest: ");
+            string adress = Console.ReadLine();
+            Console.Write("Insert Date of birth of the guest (YYYY-MM-DD): ");
+            DateTime dateOfBirth = DateTime.Parse(Console.ReadLine());
+
+            HMSDatabase.HMSDatabase.AddGuest(guestName, dateOfBirth, adress);
         }
 
     }

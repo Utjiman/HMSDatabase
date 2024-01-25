@@ -28,6 +28,14 @@ namespace HMSDatabase
                 return availableRooms;
             }
         }
+       public static void AddGuest(string guestName, DateTime dateOfBirth, string adress)
+        {
+            using (IDbConnection db = new MySqlConnection(connectionString))
+            {
+                string sql = "INSERT INTO Guest (Name, Adress, DateOfBirth) VALUES (@Name, @Adress, @DateOfBirth)";
+                db.Execute(sql, new { Name = guestName, Adress = adress, DateOfBirth = dateOfBirth });
+            }
+        }
 
 
 
