@@ -15,7 +15,7 @@ namespace HMSDatabase
 
         static HMSDatabase()
         {
-            // Skapa en enda anslutning vid klassens instansiering
+            // Create an connection
             dbConnection = new MySqlConnection(connectionString);
         }
 
