@@ -22,7 +22,7 @@ namespace HMSApplication
                     System.Console.WriteLine("| [3] Add Guest                |");
                     System.Console.WriteLine("| [4] End program              |");
                     System.Console.WriteLine("--------------------------------");
-                    System.Console.Write("Val: ");
+                    System.Console.Write("Choice: ");
                     
                     int menu = int.Parse(Console.ReadLine());
 
@@ -41,11 +41,11 @@ namespace HMSApplication
                             AddGuest();
                             break;
                         case 4:
-                            System.Console.WriteLine("Avslutar..");
+                            System.Console.WriteLine("Terminating..");
                             isRunning = false;
                             break;
                         default:
-                            System.Console.WriteLine("Var vänlig välj ett annat alternativ");
+                            System.Console.WriteLine("Please choose another option");
                             break;
                     }
                 }
@@ -63,7 +63,7 @@ namespace HMSApplication
             foreach (dynamic d in Guests)
             {
                 
-                Console.WriteLine($"Namn: {d.Name} | Nationalitet: {d.Nationality} | Adress: {d.Adress} | DateOfBirth: {d.DateOfBirth} | Phone NR: {d.PhoneNr} ");
+                Console.WriteLine($"Name: {d.Name} | Nationality: {d.Nationality} | Adress: {d.Adress} | DateOfBirth: {d.DateOfBirth} | Phone Number: {d.PhoneNr} ");
                 
             }
             System.Console.WriteLine("");
@@ -77,7 +77,7 @@ namespace HMSApplication
             List<dynamic> availableRooms = HMSDatabase.HMSDatabase.GetAvailableRooms();
             foreach (var room in availableRooms)
             {
-                Console.WriteLine($"Rumnummer: {room.RoomNr} | Status: {room.RoomStatus} | ViewType: {room.ViewType} | Last Cleaning Date: {room.LastCleaningDate} ");
+                Console.WriteLine($"Room Number: {room.RoomNr} | Status: {room.RoomStatus} | ViewType: {room.ViewType} | Last Cleaning Date: {room.LastCleaningDate} ");
                 
             }
             System.Console.WriteLine("");
