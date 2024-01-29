@@ -20,8 +20,7 @@ namespace HMSApplication
                     System.Console.WriteLine("| [1] Show Guests              |");
                     System.Console.WriteLine("| [2] Show available rooms     |");
                     System.Console.WriteLine("| [3] Add Guest                |");
-                    System.Console.WriteLine("| [4] Remove something         |");
-                    System.Console.WriteLine("| [5] Avlsuta programmet       |");
+                    System.Console.WriteLine("| [4] End program              |");
                     System.Console.WriteLine("--------------------------------");
                     System.Console.Write("Val: ");
                     
@@ -42,13 +41,9 @@ namespace HMSApplication
                             AddGuest();
                             break;
                         case 4:
-                            
-                            break;
-                        case 5:
                             System.Console.WriteLine("Avslutar..");
                             isRunning = false;
                             break;
-                        
                         default:
                             System.Console.WriteLine("Var vänlig välj ett annat alternativ");
                             break;
